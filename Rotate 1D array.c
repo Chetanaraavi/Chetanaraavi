@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+void rotateArray(int arr[], int n, int k) {
+    int temp[k];
+
+    // Store the first k elements in a temporary array
+    for (int i = 0; i < k; i++) {
+        temp[i] = arr[i];
+    }
+
+    // Shift the remaining elements to the left by k positions
+    for (int i = k; i < n; i++) {
+        arr[i - k] = arr[i];
+    }
+
+    // Copy the elements from the temporary array back to the original array
+    for (int i = 0; i < k; i++) {
+        arr[n - k + i] = temp[i];
+    }
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5, 6, 7};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int k = 3;
+
+    rotateArray(arr, n, k);
+
+    printf("Rotated array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
